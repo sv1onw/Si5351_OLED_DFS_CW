@@ -9,7 +9,7 @@ The project has been built as a Digital Frequency Synthesiser to give 20 meter B
 
 The sketch that inspired me, is the work of Antony Watts, M0IFA and I have amended it to cover my needs as a 20 meters ONLY DFS.
 
-Schematics for using an Arduino Nano are attached together with pics of my project and the schematic of a broadband RF amplifier sold in kit form, from FLOATING GROUND by SV1AFN (https://www.sv1afn.com/2n5109.html). This amplifier producing +23dBm, without the -6dB attenuator (R6 and R8 omitted, R7 replaced with a jumper), is used as QRP/p TX amplifier. I have also included a one transistor Keying circuit to be used when sending CW.
+Schematics for using an Arduino Nano are attached together with pics of my project and the schematic of a broadband RF amplifier sold in kit form, from FLOATING GROUND by SV1AFN (https://www.sv1afn.com/2n5109.html). This amplifier producing +23dBm, without the -6dB attenuator (R6 and R8 omitted, R7 replaced with a jumper), is used as QRP/p TX amplifier. I have also included a one transistor Keying circuit to be used when sending CW. For transmitting, even at QRP/p levels, a Low Pass Filter (LPF) in necessary between the antenna and the broadband amplifier output.
 
 To compile the sketch without producing errors, you will need to have Oliver Kraus U8g2 very fine display library installed in your IDE, as well as Jason Mildrum's, NT7S, latest version of fabulous Si5351 library (Etherkit/Si5351Arduino) and copy Rotary.cpp, Rotary.h and Oled.h files from this repository here, inside the folder where "CW_20-DFS_v1.1.ino" file will reside. Please do that before verifying or uploading the sketch.
 
