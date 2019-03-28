@@ -17,7 +17,7 @@
 // Frequencies are written as xxYYYYYY00, where xx= Megacycles, YYYYYY= rest of frequency followed by two zeros. e,g, 3.2768 is written 327680000
 #define CALIBRATION -4863                                  // frequency CALIBRATION, can be + or - , in my module is -57.63 Hz. Put your value here!
 
-#define FREQMIN   1400000000                               // tune range 14.0-14.350 MHz , down limit
+#define FREQMIN   1400000000                               // tune range 14.0-14.100 MHz , down limit
 #define FREQMAX   1410000000                               // upper limit of 20 meter Band
 //
 //
@@ -82,10 +82,10 @@ void loop() {
   result = enc.process();                                  // read encoder
   if (result == DIR_CW)  {                                 // freq up
     freq += freqStep;
-    if (freq >=FREQMAX)  {                                 // check the upper limit 14.350 MHz
+    if (freq >=FREQMAX)  {                                 // check the upper limit 14.100 MHz
         freq  =FREQMAX;
     }  
-    freqSet(freq, 0);                         // update CLK0/freq 
+    freqSet(freq, 0);                                      // update CLK0/freq 
     dispUpdate();
   }
   if (result == DIR_CCW) {                                 // freq down
@@ -93,15 +93,15 @@ void loop() {
     if (freq <=FREQMIN)  {                                 // check the lower limit 14.000 MHz
         freq  =FREQMIN;
     }  
-    freqSet(freq, 0);                         // update CLK0/freq
+    freqSet(freq, 0);                                      // update CLK0/freq
     dispUpdate();
   }
 }
 
-void freqSet(uint64_t f, byte n) {                         // output frequency, 0/DFS actual freq, 1/usb_lsb freq,  2/test Frequency
+void freqSet(uint64_t f, byte n) {                         // output frequency, 0/DFS actual freq, 1/test Frequency
   switch (n) {
     case 0:
-      dfs.set_freq(f, SI5351_CLK0);                        // DFS VFO  actual 10.7232 - 11.0732 MHz
+      dfs.set_freq(f, SI5351_CLK0);                        // DFS VFO  actual 14.000 - 14.100 MHz
 // 
 //
 case 1:
@@ -113,7 +113,7 @@ void dispUpdate() {                                        // OLED loop
   oled.firstPage();
   do {
     dispMsg(25, 0, "20m  CW-DFS");                         // display title
-    dispFreq(15, 25, freq / 100, 0, 2);                    // display frequency, in kHz
+    dispFreq(15, 25, freq / 100, 0, 2);                    // display frequency, in kHz/Hz
 // 
 //
 //
